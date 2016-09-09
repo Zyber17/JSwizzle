@@ -1,7 +1,5 @@
 var Optional = function(val) {
 	this.defined = false;
-	this.val = undefined;
-
 	Object.defineProperty(this, "val", {
 		get: function() {
 			if(this.defined) {
@@ -20,6 +18,7 @@ var Optional = function(val) {
 			}
 		}
 	});
+	this.val = val;
 
 	this.isSet = function() {
 		return this.defined;
@@ -30,4 +29,4 @@ var Optional = function(val) {
 	}
 }
 
-//module.exports = Optional;
+module.exports = Optional;
