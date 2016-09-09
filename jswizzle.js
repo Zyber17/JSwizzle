@@ -1,24 +1,33 @@
-function optional(val) {
-	this.defined = (val === undefined ? false : true);
-	this.val = (val === undefined ? undefined : val);
+var Optional = function(val) {
+	this.defined = false;
+	this.val = undefined;
 
-	function isSet() {
-		return this.defined;
-	}
-	function get() {
-		if(this.isSet()) {
-			return this.val;
-		} else {
-			throw new Error('You cannot unwrap an unset optional.');
+	Object.defineProperty(this, "val", {
+		get: function() {
+			if(this.defined) {
+				return val;
+			} else {
+				throw new Error('You cannot unwrap an unset optional.');
+			}
+		},
+		set: function(newVal) {
+			if (newVal === undefined) {
+				this.defined = false;
+				val = undefined
+			} else {
+				this.defined = true;
+				val = newVal;
+			}
 		}
-	}
-	function set(val) {
-		this.defined = true;
-		this.val = val;
-		return this.val;
-	}
-	function unset() {
-		this.defined = false;
+	});
+
+	this.isSet = function() {
+		return this.defined;
+	};
+
+	this.unset = function() {
 		this.val = undefined;
 	}
 }
+
+//module.exports = Optional;
