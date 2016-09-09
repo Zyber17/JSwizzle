@@ -1,3 +1,3 @@
 # JSwizzle
 
-Swift-style optionals for JavaScript
+Swift-style optionals for JavaScript.
